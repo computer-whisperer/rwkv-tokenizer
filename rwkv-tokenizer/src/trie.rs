@@ -1,9 +1,9 @@
-#[derive(Default, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[derive(Default, Debug, Clone)]
 struct TrieNode {
     children: [[Option<Box<TrieNode>>; 16]; 16],
     id: u16
 }
-
 
 impl TrieNode {
     fn new() -> Self {
@@ -18,7 +18,8 @@ impl TrieNode {
     }
 }
 
-#[derive(Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[derive(Debug, Clone)]
 pub struct Trie {
     root: TrieNode,
 }
